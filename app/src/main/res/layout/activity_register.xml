@@ -14,6 +14,8 @@
         android:layout_marginTop="84dp"
         android:text="Crie sua conta "
         android:textSize="48dp"
+        android:elevation="18dp"
+        android:textColor="#000"
         android:letterSpacing="0.05"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,11 +24,13 @@
 
     <EditText
         android:id="@+id/input_email"
+        android:textColorHint="#bbb"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
         android:background="@drawable/inp_default"
         android:hint="Digite o e-mail"
+        android:elevation="8dp"
         android:inputType="textWebEmailAddress"
         android:letterSpacing="0.04"
         android:padding="20dp"
@@ -38,10 +42,12 @@
     <EditText
         android:id="@+id/input_password"
         android:layout_width="350dp"
+        android:textColorHint="#bbb"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:background="@drawable/inp_default"
         android:hint="*******"
+        android:elevation="8dp"
         android:inputType="textPassword"
         android:padding="20dp"
         android:letterSpacing="0.2"
@@ -75,6 +81,7 @@
 
     <TextView
         android:id="@+id/textView"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
@@ -85,6 +92,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:id="@+id/to_enter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/primaryBlue"

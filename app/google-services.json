@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "224329580869",
+    "project_id": "person-notes",
+    "storage_bucket": "person-notes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224329580869:android:531ad89c5ea1f5f2cebe2c",
+        "android_client_info": {
+          "package_name": "com.example.personnotes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaTONM1aDdRbVafHsQKX4sEJlAl53H2WE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
