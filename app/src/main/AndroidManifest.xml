@@ -13,6 +13,9 @@
         android:theme="@style/Theme.PersonNotes"
         tools:targetApi="34">
         <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
             android:name=".singIn"
             android:exported="false" />
         <activity

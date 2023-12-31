@@ -21,7 +21,7 @@ class SplahScreenSing : AppCompatActivity() {
         }
 
         btn_signIn.setOnClickListener {
-            val intent = Intent(this, singIn::class.java)
+            val intent = Intent(this, Login::class.java)
             startActivity(intent)
         }
     }
