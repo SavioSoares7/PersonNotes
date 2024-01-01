@@ -2,11 +2,11 @@
     android:shape="rectangle">
 
     <!-- Cor de fundo -->
-    <solid android:color="@color/primaryBlue" />
+    <solid android:color="@color/primaryRed" />
 
     <!-- Cor da borda e espessura -->
     <stroke
-        android:color="#405ADD"
+        android:color="@color/primaryRed"
         android:width="1sp"/>
 
     <!-- Raio dos cantos -->
