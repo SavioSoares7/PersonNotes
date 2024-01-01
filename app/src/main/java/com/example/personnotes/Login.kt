@@ -48,7 +48,7 @@ class Login : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email,password)
             .addOnCompleteListener(this){ task->
                 if(task.isSuccessful){
-                    Toast.makeText(this, "Cadastro realizado!!!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Conectado com sucesso!!!", Toast.LENGTH_LONG).show()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 }

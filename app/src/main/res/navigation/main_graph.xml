@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@+id/menu_home">
+
+    <fragment
+        android:id="@+id/menu_home"
+        android:name="com.example.personnotes.Home"
+        android:label="com.example.personnotes.Home"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/menu_todo"
+        android:name="com.example.personnotes.TodoList"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/menu_profile"
+        android:name="com.example.personnotes.Profile"
+        android:label="fragment_todo_list"
+        tools:layout="@layout/fragment_todo_list" />
 
 </navigation>
