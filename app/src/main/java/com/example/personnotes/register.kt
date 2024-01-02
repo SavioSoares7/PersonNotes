@@ -60,7 +60,9 @@ class register : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-
+                    Toast.makeText(this, "Cadastro realizado!!!", Toast.LENGTH_LONG).show()
+                    val intent = Intent(this, Login::class.java)
+                    startActivity(intent)
                     finish() // Opcional: Fechar a atividade de registro atual após o registro bem-sucedido
                 } else {
                     Toast.makeText(this, "Cadastro não realizado!!!", Toast.LENGTH_LONG).show()
