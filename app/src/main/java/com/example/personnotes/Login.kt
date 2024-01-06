@@ -26,10 +26,16 @@ class Login : AppCompatActivity() {
         val inputEmail : EditText = binding.inputEmail
         val inputPassword : EditText = binding.inputPassword
         val btnToEnter : TextView = binding.btnEnter
+        val registerAcess : TextView = binding.btnRegister
 
         btnToEnter.setOnClickListener {
             userLogin(inputEmail, inputPassword)
             val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        registerAcess.setOnClickListener {
+            val intent = Intent(this, register::class.java)
             startActivity(intent)
         }
 
