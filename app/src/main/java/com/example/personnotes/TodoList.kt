@@ -1,18 +1,24 @@
 package com.example.personnotes
 
 import android.os.Bundle
+import android.renderscript.Sampler.Value
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import com.google.firebase.Firebase
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.database
+import com.google.firebase.database.ValueEventListener
+
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -25,10 +31,18 @@ class TodoList : Fragment() {
 
     private lateinit var inputTask: EditText
     private lateinit var btnTask : TextView
+    private lateinit var numberTask : TextView
+    private lateinit var recyclerTask : RecyclerView
+
 
 
     private val userId: String? = FirebaseAuth.getInstance().currentUser?.uid
     private var database: DatabaseReference = FirebaseDatabase.getInstance().reference.child("users").child(userId.toString())
+
+    private var tasksReference: DatabaseReference = database.child("Tasks")
+    private var userTasks: List<String> = emptyList()
+
+
 
     private fun createTask(editTask: EditText) {
         val task = editTask.text.toString()
@@ -89,7 +103,57 @@ class TodoList : Fragment() {
         btnTask.setOnClickListener {
             createTask(inputTask)
         }
+
+        numberTask = view.findViewById(R.id.task_create)
+
+        tasksReference.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val taskCount = snapshot.childrenCount.toInt()
+                numberTask.text = taskCount.toString()
+                getListOfTask()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), "Erro ao ler dados do banco de dados", Toast.LENGTH_SHORT).show()
+            }
+        })
+        recyclerTask = view.findViewById(R.id.recycler_task)
+        initRecycleView()
     }
+
+    private fun initRecycleView() {
+        recyclerTask.layoutManager = LinearLayoutManager(requireContext())
+        recyclerTask.setHasFixedSize(true)
+        recyclerTask.adapter = Adpater_item_task(userTasks) // Certifique-se de passar dados para o adaptador conforme necessário
+    }
+
+    private fun getListOfTask() {
+        tasksReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val tasksList: MutableList<String> = mutableListOf()
+
+                for (taskSnapshot in snapshot.children) {
+                    val task = taskSnapshot.child("Task").getValue(String::class.java)
+                    task?.let {
+                        tasksList.add(it)
+                    }
+                }
+
+                userTasks = tasksList
+
+                // Atualizar o RecyclerView após obter as tarefas no thread principal
+                requireActivity().runOnUiThread {
+                    recyclerTask.adapter = Adpater_item_task(userTasks)
+                }
+            }
+
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), "Erro ao ler dados do banco de dados", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
 
     companion object {
         @JvmStatic
